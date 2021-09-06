@@ -1,7 +1,7 @@
 import {Entity, Column} from "typeorm";
 
 @Entity()
-export class Step {
+export class RecipeStep {
     @Column()
     recipeId!: number;
 
