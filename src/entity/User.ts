@@ -14,6 +14,7 @@ export class User {
     })
     email!: string;
 
+    // TODO: salt this
     @Column()
     password!: string;
 
@@ -27,5 +28,5 @@ export class User {
         type: "int",
         nullable: true
     })
-    imageID!: number;
+    imageId!: number;
 }

@@ -11,7 +11,7 @@ export class Recipe {
     @Column()
     description!: string;
 
-    // ???? Idk how to set this up for hh:mm
+    // TODO: ???? Idk how to set this up for hh:mm
     @Column({
         type: "time",
         nullable: true
@@ -28,7 +28,7 @@ export class Recipe {
         type: "int",
         nullable: true
     })
-    imageId!: string;
+    imageId!: number;
 
     @Column({
         type: "int",

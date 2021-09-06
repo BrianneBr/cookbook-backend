@@ -7,4 +7,10 @@ export class Tag {
 
     @Column()
     tagName!: string;
+
+    @Column({
+        type: "text",
+        nullable: true
+    })
+    tagColor!: string;
 }
