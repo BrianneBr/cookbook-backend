@@ -5,6 +5,9 @@ export class Cookbook {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column()
+    @Column({
+        type: "text",
+        nullable: true
+    })
     description!: string;
 }

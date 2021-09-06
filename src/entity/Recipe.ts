@@ -12,18 +12,33 @@ export class Recipe {
     description!: string;
 
     // ???? Idk how to set this up for hh:mm
-    @Column()
+    @Column({
+        type: "time",
+        nullable: true
+    })
     cookTime!: Date;
 
-    @Column()
+    @Column({
+        type: "int",
+        nullable: true
+    })
     servings!: number;
 
-    @Column()
+    @Column({
+        type: "int",
+        nullable: true
+    })
     imageId!: string;
 
-    @Column()
+    @Column({
+        type: "int",
+        nullable: true
+    })
     parentId!: number;
 
-    @Column()
+    @Column({
+        type: "bool",
+        nullable: true
+    })
     hasVarient!: boolean;
 }

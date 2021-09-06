@@ -23,6 +23,9 @@ export class User {
     })
     name!: string;
 
-    @Column()
+    @Column({
+        type: "int",
+        nullable: true
+    })
     imageID!: number;
 }

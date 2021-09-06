@@ -6,5 +6,5 @@ export class RecipeTag {
     tagId!: number;
 
     @Column()
-    recipeId!: Buffer;
+    recipeId!: number;
 }

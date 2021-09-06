@@ -8,15 +8,22 @@ export class RecipeIngredient {
     @Column()
     ingredientId!: number;
 
-    // decimal
-    @Column()
+    @Column({
+        type: "decimal",
+        nullable: true
+    })
     quantityNumerator!: number;
 
-    // int
-    @Column()
+    @Column({
+        type: "int",
+        nullable: true
+    })
     quantityDenominator!: number;
 
     // "tsp", "cups", "oz", etc
-    @Column()
+    @Column({
+        type: "text",
+        nullable: true
+    })
     units!: string;
 }

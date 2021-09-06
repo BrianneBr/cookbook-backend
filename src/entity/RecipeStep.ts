@@ -8,7 +8,10 @@ export class Step {
     @Column()
     index!: number;
 
-    @Column()
+    @Column({
+        type: "text",
+        nullable: true
+    })
     title!: string;
 
     @Column()
