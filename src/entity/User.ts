@@ -6,11 +6,23 @@ export class User {
     id!: number;
 
     @Column()
-    firstName!: string;
+    username!: string;
+
+    @Column({
+        type: "text",
+        nullable: true
+    })
+    email!: string;
 
     @Column()
-    lastName!: string;
+    password!: string;
+
+    @Column({
+        type: "text",
+        nullable: true
+    })
+    name!: string;
 
     @Column()
-    age!: number;
+    imageID!: number;
 }
