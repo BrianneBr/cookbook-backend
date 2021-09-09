@@ -12,7 +12,14 @@ export class Cookbook {
     })
     description!: string;
 
-    @ManyToMany(() => Recipe, recipe => recipe.cookbooks)
+    @ManyToMany(
+        () => Recipe,
+        recipe => recipe.cookbooks,
+        {
+            onDelete: "NO ACTION",
+            onUpdate: "NO ACTION"
+        }
+    )
     @JoinTable()
     recipes!: Recipe[];
 }
