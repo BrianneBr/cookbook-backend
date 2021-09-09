@@ -1,4 +1,10 @@
-{
+const {join} = require("path");
+
+const env = process.env.NODE_ENV;
+
+const basePath = join(__dirname, env === "development" ? "src" : "build");
+
+module.exports = {
    "type": "postgres",
    "host": "localhost",
    "port": 5432,
@@ -8,17 +14,17 @@
    "synchronize": true,
    "logging": false,
    "entities": [
-      "build/entity/**/*.js"
+      join(basePath, "/entity/**/*{.ts,.js}")
    ],
    "migrations": [
-      "build/migration/**/*.js"
+      join(basePath, "/migration/**/*{.ts,.js}")
    ],
    "subscribers": [
-      "build/subscriber/**/*.js"
+      join(basePath, "/subscriber/**/*{.ts,.js}")
    ],
    "cli": {
       "entitiesDir": "src/entity",
       "migrationsDir": "src/migration",
       "subscribersDir": "src/subscriber"
    }
-}
+};
