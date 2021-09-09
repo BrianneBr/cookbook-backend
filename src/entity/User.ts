@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
+import { Recipe } from "./Recipe";
 
 @Entity()
 export class User {
@@ -29,4 +30,7 @@ export class User {
         nullable: true
     })
     imageId!: number;
+
+    @OneToMany(() => Recipe, recipe => recipe.user)
+    recipes!: Recipe[];
 }

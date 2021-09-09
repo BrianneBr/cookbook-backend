@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
+import { User } from "./User";
 
 @Entity()
 export class Recipe {
@@ -41,4 +42,7 @@ export class Recipe {
         nullable: true
     })
     hasVarient!: boolean;
+
+    @ManyToOne(() => User, user => user.recipes)
+    user!: User; 
 }
