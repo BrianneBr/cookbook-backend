@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany} from "typeorm";
+import { Cookbook } from "./Cookbook";
 import { User } from "./User";
 
 @Entity()
@@ -45,4 +46,7 @@ export class Recipe {
 
     @ManyToOne(() => User, user => user.recipes)
     user!: User; 
+
+    @ManyToMany(() => Cookbook, cookbook => cookbook.recipes)
+    cookbooks!: Cookbook[];
 }
