@@ -17,9 +17,6 @@ export class User {
     email!: string;
 
     @Column()
-    passwordSalt!: string;
-
-    @Column()
     passwordHash!: string;
 
     @Column({
