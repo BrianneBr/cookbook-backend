@@ -26,7 +26,9 @@ import Fastify, { FastifyInstance } from "fastify";
 async function setupServer(): Promise<FastifyInstance> {
 	const connection = await createConnection();
 
-	const app = Fastify();
+	const app = Fastify({
+        logger: true
+    });
 
 	app.register(import("fastify-typeorm-plugin"), {
 		connection,

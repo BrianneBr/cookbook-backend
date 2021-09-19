@@ -16,7 +16,8 @@
                 "${workspaceFolder}/build/**/*.js"
             ],
             "preLaunchTask": "tsc: watch - tsconfig.json",
-            "internalConsoleOptions": "openOnSessionStart"
+            "internalConsoleOptions": "openOnSessionStart",
+            "outputCapture": "std"
         }
     ]
 }
