@@ -1,5 +1,6 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, ManyToOne} from "typeorm";
 import { Recipe } from "./Recipe";
+import { User } from "./User";
 
 @Entity()
 export class Cookbook {
@@ -11,6 +12,9 @@ export class Cookbook {
         nullable: true
     })
     description!: string;
+
+    @ManyToOne(() => User, user => user.books)
+    author!: User;
 
     @ManyToMany(
         () => Recipe,
