@@ -16,9 +16,11 @@ export class User {
     })
     email!: string;
 
-    // TODO: salt this
     @Column()
-    password!: string;
+    passwordSalt!: string;
+
+    @Column()
+    passwordHash!: string;
 
     @Column({
         type: "text",
