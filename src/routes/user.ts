@@ -2,6 +2,8 @@ import { FastifyPluginAsync } from "fastify";
 import { User } from "../entity/User";
 import bcrypt from "bcrypt";
 
+import S from "fluent-json-schema";
+
 const plugin: FastifyPluginAsync = async (fastify, opts) => {
 	fastify.get("/user", async function () {
 		const repo = this.orm.getRepository(User);
@@ -15,6 +17,13 @@ const plugin: FastifyPluginAsync = async (fastify, opts) => {
 
 	fastify.post<{ Body: CreateUserRequest }>(
 		"/user/create",
+        {
+            schema: {
+                body: S.object()
+                    .prop("username", S.string().required())
+                    .prop("password", S.string().required())
+            }
+        },
 		async function (req) {
 			const user = await createUser(req.body.username, req.body.password);
 			await this.orm.getRepository(User).save(user);
