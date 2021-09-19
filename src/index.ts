@@ -1,5 +1,6 @@
-// import "reflect-metadata";
-// import {createConnection} from "typeorm";
+import "reflect-metadata";
+import { createConnection } from "typeorm";
+
 // import {User} from "./entity/User";
 
 // createConnection().then(async connection => {
@@ -23,24 +24,29 @@
 import Fastify, { FastifyInstance } from "fastify";
 
 async function setupServer(): Promise<FastifyInstance> {
+	const connection = await createConnection();
+
 	const app = Fastify();
-	
-    app.register(import("./routes/user"));
-    
-    return app;
+
+	app.register(import("fastify-typeorm-plugin"), {
+		connection,
+	});
+
+	app.register(import("./routes/user"));
+
+	return app;
 }
 
 async function createServer(app: FastifyInstance) {
-    try{
-        await app.listen(8080);
-    }
-    catch(err) {
-        app.log.error({err}, "failed to listen");
+	try {
+		await app.listen(8080);
+	} catch (err) {
+		app.log.error({ err }, "failed to listen");
 		process.exit(1);
-    }
+	}
 }
 
 (async () => {
 	const fastify = await setupServer();
-    await createServer(fastify);
+	await createServer(fastify);
 })();
