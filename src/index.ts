@@ -22,7 +22,13 @@
 
 import Fastify, { FastifyInstance } from "fastify";
 
-createServer(Fastify());
+async function setupServer(): Promise<FastifyInstance> {
+	const app = Fastify();
+	
+    app.register(import("./routes/user"));
+    
+    return app;
+}
 
 async function createServer(app: FastifyInstance) {
     try{
@@ -34,3 +40,7 @@ async function createServer(app: FastifyInstance) {
     }
 }
 
+(async () => {
+	const fastify = await setupServer();
+    await createServer(fastify);
+})();
