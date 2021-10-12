@@ -28,7 +28,7 @@ export class User {
         type: "text",
         nullable: true
     })
-    name!: string;
+    displayName!: string;
 
     @Column({
         type: "int",
