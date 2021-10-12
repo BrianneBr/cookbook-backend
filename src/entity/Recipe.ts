@@ -13,12 +13,11 @@ export class Recipe {
     @Column()
     description!: string;
 
-    // TODO: ???? Idk how to set this up for hh:mm
     @Column({
-        type: "time",
+        type: "int",
         nullable: true
     })
-    cookTime!: Date;
+    cookTimeSeconds!: number;
 
     @Column({
         type: "int",
