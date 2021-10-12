@@ -1,4 +1,4 @@
-# Awesome Project Build with TypeORM
+Cookbook backend
 
 Steps to run this project:
 
