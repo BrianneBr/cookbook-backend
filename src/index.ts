@@ -27,14 +27,35 @@ async function setupServer(): Promise<FastifyInstance> {
 	const connection = await createConnection();
 
 	const app = Fastify({
-        logger: true
-    });
+		logger: true
+	});
 
 	app.register(import("fastify-typeorm-plugin"), {
 		connection,
 	});
 
-	app.register(import("./routes/user"));
+	// Register the fastify-jwt plugin
+	app.register(import("fastify-jwt"), {
+		// TODO: Proper validation for this
+		secret: process.env.JWT_SECRET ?? "secret"
+	});
+
+	app.register(import("./routes/auth"));
+
+	// Register all routes other than the "auth" routes
+	// so that they all require JWT verification
+	app.register((fastify) => {
+		// Add request hook for all routes in this anonymous plugin
+		fastify.addHook("onRequest", async (request, reply) => {
+			try {
+				await request.jwtVerify()
+			} catch (err) {
+				reply.send(err)
+			}
+		});
+
+		fastify.register(import("./routes/user"));
+	});
 
 	return app;
 }
